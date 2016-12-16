@@ -1,0 +1,142 @@
+/* HEADER AND NAV */
+
+/* Font-Awesome v4.5.0 - (http://fortawesome.github.io/Font-Awesome/) */
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css") all;
+/* Google-Fonts */
+@import url("https://fonts.googleapis.com/css?family=Buenard:700") all;
+
+body {
+    #padding-top: 250px;
+}
+
+.zsx {
+    background-color: #5A55A3;
+}
+
+.zsx h1, .zsx h3{
+    text-align:center;
+    color:#fff;
+}
+
+.zsx h1{
+    font-size:110px;
+    font-family:'Buenard', serif;
+    font-weight:bold;
+    text-transform:inherit;
+    margin: 0px auto 0px;
+    text-shadow: 2px 2px 2px #000;
+    -webkit-text-shadow: 2px 2px 2px #000;
+    -moz-text-shadow: 2px 2px 2px #000;
+}
+
+.zsx h3{
+    font-size: 25px;
+    font-weight:lighter;
+    margin: 0px auto 15px;
+}
+
+
+
+/*  bhoechie tab */
+div.bhoechie-tab-container{
+    z-index: 10;
+    background-color: #ffffff;
+    padding: 0 !important;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    border:1px solid #ddd;
+    margin-top: 20px;
+    margin-left: 50px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    -moz-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    background-clip: padding-box;
+    opacity: 0.97;
+    filter: alpha(opacity=97);
+}
+div.bhoechie-tab-menu{
+    padding-right: 0;
+    padding-left: 0;
+    padding-bottom: 0;
+}
+div.bhoechie-tab-menu div.list-group{
+    margin-bottom: 0;
+}
+div.bhoechie-tab-menu div.list-group>a{
+    margin-bottom: 0;
+}
+div.bhoechie-tab-menu div.list-group>a .glyphicon,
+div.bhoechie-tab-menu div.list-group>a .fa {
+    color: #5A55A3;
+}
+div.bhoechie-tab-menu div.list-group>a:first-child{
+    border-top-right-radius: 0;
+    -moz-border-top-right-radius: 0;
+}
+div.bhoechie-tab-menu div.list-group>a:last-child{
+    border-bottom-right-radius: 0;
+    -moz-border-bottom-right-radius: 0;
+}
+div.bhoechie-tab-menu div.list-group>a.active,
+div.bhoechie-tab-menu div.list-group>a.active .glyphicon,
+div.bhoechie-tab-menu div.list-group>a.active .fa{
+    background-color: #5A55A3;
+    background-image: #5A55A3;
+    color: #ffffff;
+}
+div.bhoechie-tab-menu div.list-group>a.active:after{
+    content: '';
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    margin-top: -13px;
+    border-left: 0;
+    border-bottom: 13px solid transparent;
+    border-top: 13px solid transparent;
+    border-left: 10px solid #5A55A3;
+}
+
+div.bhoechie-tab-content{
+    background-color: #ffffff;
+    /* border: 1px solid #eeeeee; */
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+div.bhoechie-tab div.bhoechie-tab-content:not(.active){
+    display: none;
+}
+
+/* FOOTER */
+
+footer .list-group-item{
+    border:0;
+    background:transparent;
+}
+
+div.visible-xs-block
+{
+    background:#5A55A3;
+    color:white;
+    font-family:"Tahoma" serif;
+    padding:1em;
+}
+
+footer{
+    margin-top: 40px;
+    background:#333333;
+    color:white;
+    height:auto;
+}
+
+
+/****************CANVAS STYLE****************/
+#canvas0 {
+    border : 2px solid #dd5c11;
+    height: 500px;
+}
+
+#tShirt{
+    margin-top: 20px;
+}
+/************END OF CANVAS STYLE*************/
