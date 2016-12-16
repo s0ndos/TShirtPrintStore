@@ -10,7 +10,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-
 <!-- HEADER AND NAV-->
 <header>
     <div class="container-fluid">
@@ -100,7 +99,19 @@
                 </div>
             </div>
         </div>
-        <!--try to put canvas here-->
+        <div class="col-lg-6 col-md-6 col-sm-9 col-xs-10" id="tShirt">
+            <div class="list-group row">
+                <a href="#" class="col-lg-2 col-md-2 col-sm-3 col-xs-4 list-group-item active text-center">
+                    <img src="image/DemoTshirtFront.png" width="50px">
+                </a>
+            </div>
+
+            <canvas class="col-lg-10 col-md-10 col-sm-12 col-xs-12" id="canvas0">
+                Your browser does not support the HTML5 canvas tag.
+            </canvas>
+        </div>
+
+
     </div>
 </div>
 
@@ -185,6 +196,9 @@
     </div>
 </footer>
 
+<script src="script/P87_common_shapes.js"></script>
+<script src="script/P87_canvas_data.js"></script>
 <script src="script/main.js"></script>
+
 </body>
 </html>

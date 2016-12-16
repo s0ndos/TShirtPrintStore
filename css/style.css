@@ -135,3 +135,15 @@ footer{
     color:white;
     height:auto;
 }
+
+
+/****************CANVAS STYLE****************/
+#canvas0 {
+    border : 2px solid #dd5c11;
+    height: 500px;
+}
+
+#tShirt{
+    margin-top: 20px;
+}
+/************END OF CANVAS STYLE*************/
