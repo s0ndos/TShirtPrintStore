@@ -81,7 +81,7 @@ div.bhoechie-tab-menu div.list-group>a.active,
 div.bhoechie-tab-menu div.list-group>a.active .glyphicon,
 div.bhoechie-tab-menu div.list-group>a.active .fa{
     background-color: #5A55A3;
-    background-image: #5A55A3;
+    /*background-image: #5A55A3;*/
     color: #ffffff;
 }
 div.bhoechie-tab-menu div.list-group>a.active:after{
@@ -106,7 +106,13 @@ div.bhoechie-tab-content{
 div.bhoechie-tab div.bhoechie-tab-content:not(.active){
     display: none;
 }
-
+/*Camera Video*/
+.p_video{
+    display: none;
+}
+.p2_video{
+    display: none;
+}
 /* FOOTER */
 
 footer .list-group-item{
@@ -118,7 +124,8 @@ div.visible-xs-block
 {
     background:#5A55A3;
     color:white;
-    font-family:"Tahoma" serif;
+    /*font-family:"Tahoma" Serif;*/
+    font-family:"Tahoma";
     padding:1em;
 }
 
