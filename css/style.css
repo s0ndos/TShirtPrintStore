@@ -101,7 +101,7 @@ div.bhoechie-tab-menu div.list-group>a.active:after{
 div.bhoechie-tab-content{
     background-color: #ffffff;
     /* border: 1px solid #eeeeee; */
-    padding-left: 20px;
+    /*padding-left: 5px;*/
     padding-top: 10px;
 }
 
@@ -109,8 +109,12 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
     display: none;
 }
 /*Picture*/
+#files_input{
+    margin-bottom: 5px;
+}
 #output_file_list{
     list-style-type:none;
+    padding:0;
 }
 
 /*Camera Video*/

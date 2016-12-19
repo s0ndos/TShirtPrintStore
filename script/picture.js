@@ -9,6 +9,7 @@
 function Upload_Picture() {
     var files_input=document.getElementById("files_input");
     var output_file_list=document.getElementById('output_file_list');
+    var canvas0=document.getElementById('canvas0');
     //Check API work
     if(!window.File){
         throw new Error('No file API support');
@@ -22,13 +23,12 @@ function Upload_Picture() {
                 //Create li div remove submit canvas image
                 var new_li = document.createElement('li');
                 var new_div = document.createElement('div');
-                var new_remove = document.createElement('a');
+                var new_remove = document.createElement('button');
                 var new_submit=document.createElement('button');
                 var new_canvas = document.createElement('canvas');
                 var new_image = new Image;
                 //remove and submit innerHTML
-                new_remove.innerHTML="X";
-                new_remove.href="JavaScript:";
+                new_remove.innerHTML="Remove";
                 new_submit.innerHTML="Submit";
                 //appending li to ul,div to li
                 output_file_list.appendChild(new_li);
@@ -37,23 +37,41 @@ function Upload_Picture() {
                 new_div.appendChild(new_canvas);
                 new_div.appendChild(new_remove);
                 new_div.appendChild(new_submit);
-                //Remove Style
-                remove_style(new_remove);
-                remove_hover(new_remove);
+
+                //button Style
+                button_style(new_remove);
+                button_hover(new_remove);
+                button_style(new_submit);
+                button_hover(new_submit);
                 // Start image load by calling any of the two read_and_draw function
                 read_and_filereader(file,new_image);
+                //Get Before submit  Canvas crc
+                var dataURL=canvas0.toDataURL('image/png');
                 // Making use a closure to trap the right canvas and image instances
                 new_image.addEventListener('load', function () {
                     var canvas = new_canvas;
                     var img = new_image;
                     return function () {
-                        draw_on_canvas(canvas,img,new_remove);
+                        draw_on_canvas(canvas,img);
                     }
                 }());
                 //Remove picture
-                new_remove.addEventListener('click',remove_canvas);
+                new_remove.addEventListener('click',function(){
+                    var canvas = new_canvas;
+                    var img = new_image;
+                    var src=dataURL;
+                    return function () {
+                        remove_canvas(img,new_canvas,src);
+                    }
+                }());
+                new_remove.addEventListener('click',remove_list);
                 //Submit picture to Canvas0
-                new_submit.addEventListener('click',putinto_clothes);
+                new_submit.addEventListener('click',function () {
+                    var canvas=new_canvas;
+                    return function () {
+                        putinto_clothes(canvas);
+                    }
+                }());
             }else{
                 alert("Error!The file is not img.(If your file is img, we just provide .png, .jpg, .jpeg and .bmp)");
             }
@@ -100,51 +118,73 @@ function Upload_Picture() {
      */
     function draw_on_canvas(canvas, image) {
         // Giving canvas the image dimension
+
         canvas.width = image.width;
         canvas.height = image.height;
+
         var ctx = canvas.getContext('2d');
         // Drawing
         ctx.drawImage(image, 0 ,0);
     }
 
     /**
-     * Remove button
+     * Button Style
+     * @param button
      */
-    function remove_canvas() {
-        document.getElementById("output_file_list").removeChild(this.parentNode.parentNode);
-    }
-    function remove_style(remove) {
-        $(remove).css({
-            "position": "absolute",
-            "left":0+"px",
-            "z-index": 5,
-            "text-decoration": "none",
-            "color": "black"
+    function button_style(button) {
+        $(button).css({
+            "color": "black",
+            "margin-right":5+"px"
         });
     }
 
-    function remove_hover(remove) {
-        $(remove).hover(
+    function button_hover(button) {
+        $(button).hover(
             function(){
-                $(remove).css({
-                    "position": "absolute",
-                    "left": 0 + "px",
-                    "z-index": 5,
-                    "text-decoration": "none",
+                $(button).css({
                     "color": "blue"
                 })
             },
             function () {
-                remove_style(remove);
+                button_style(button);
             });
+    }
+
+    /**
+     * Remove button
+     */
+    function remove_list() {
+        //Remove list li
+        document.getElementById("output_file_list").removeChild(this.parentNode.parentNode);
+
+    }
+    function remove_canvas(image,canvas,src) {
+        //Get img
+        var dataURL=canvas.toDataURL('image/png');
+        var remove_img=new Image;
+        var return_img=new Image;
+        remove_img.src=dataURL;
+        //Get Clothes canvas
+        var canvas0=document.getElementById('canvas0');
+        //Remove the picture
+        var ctx=canvas0.getContext('2d');
+        ctx.clearRect(0,0,remove_img.width,remove_img.height);
+        //return before submit
+        return_img.src=src;
+        ctx.drawImage(return_img,0,0);
+
     }
 
     /**
      * Submit button
      * Put picture into Canvas0
      */
-    function putinto_clothes() {
-       var dataURL=new_canvas.toDataURL('image/png');
-       console.log(dataURL);
+    function putinto_clothes(canvas) {
+       var dataURL=canvas.toDataURL('image/png');
+       var Img=new Image;
+       Img.src=dataURL;
+       var canvas0=document.getElementById('canvas0');
+       var ctx=canvas0.getContext('2d');
+       ctx.drawImage(Img,0,0);
     }
 }
