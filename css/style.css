@@ -8,7 +8,9 @@
 body {
     #padding-top: 250px;
 }
-
+canvas{
+   border : 2px solid #dd5c11;
+}
 .zsx {
     background-color: #5A55A3;
 }
@@ -106,10 +108,12 @@ div.bhoechie-tab-content{
 div.bhoechie-tab div.bhoechie-tab-content:not(.active){
     display: none;
 }
-/*Camera Video*/
-.p_video{
-    display: none;
+/*Picture*/
+#output_file_list{
+    list-style-type:none;
 }
+
+/*Camera Video*/
 .p2_video{
     display: none;
 }
@@ -124,7 +128,7 @@ div.visible-xs-block
 {
     background:#5A55A3;
     color:white;
-    /*font-family:"Tahoma" Serif;*/
+    /*font-family:"Tahoma"; Serif;*/
     font-family:"Tahoma";
     padding:1em;
 }
@@ -135,15 +139,3 @@ footer{
     color:white;
     height:auto;
 }
-
-
-/****************CANVAS STYLE****************/
-#canvas0 {
-    border : 2px solid #dd5c11;
-    height: 500px;
-}
-
-#tShirt{
-    margin-top: 20px;
-}
-/************END OF CANVAS STYLE*************/

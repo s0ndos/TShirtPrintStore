@@ -5,10 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <!--<link rel="stylesheet" href="css/style.css">-->
+    <!--<link rel="stylesheet" href  ="/style.css">-->
     <link rel="stylesheet" href="css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 <!-- HEADER AND NAV-->
@@ -49,7 +50,6 @@
 <!-- END OF HEADER AND NAV -->
 
 <div class="container">
-    11
     <div class="row">
         <div class="col-lg-5 col-md-5 col-sm-8 col-xs-9 bhoechie-tab-container">
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bhoechie-tab-menu">
@@ -63,7 +63,7 @@
                     <a href="#" class="list-group-item text-center">
                         <h4 class="glyphicon glyphicon-pencil"></h4><br/>Draw
                     </a>
-                    <a href="#" class="list-group-item text-center">
+                    <a href="#" class="list-group-item text-center" id="picture">
                         <h4 class="glyphicon glyphicon-picture"></h4><br/>Picture
                     </a>
                     <a href="#" class="list-group-item text-center" id="camera">
@@ -89,13 +89,16 @@
                 <!-- picture section -->
                 <div class="bhoechie-tab-content">
                     <!--                     FEATURE OPTIONS GO HERE -->
+                    <input id="files_input" type="file" multiple="multiple"/>
+                    <ul id="output_file_list"></ul>
+
                 </div>
                 <!-- camera section -->
                 <div class="bhoechie-tab-content">
                     <!--                     FEATURE OPTIONS GO HERE -->
-                    <video  id="video" class="p_video"></video>
-                    <button id="snap"  class="p_video">Snap</button>
-                    <canvas id="picture" class="p2_video"></canvas>
+                    <video  id="video"></video>
+                    <button id="snap">Snap</button>
+                    <canvas id="photo" class="p2_video"></canvas>
                     <a id="download" download="picture" class="p2_video"><button class="p2_video">Download</button></a>
                 </div>
             </div>
@@ -199,6 +202,8 @@
 
 <script src="script/P87_common_shapes.js"></script>
 <script src="script/P87_canvas_data.js"></script>
+<script src="script/camera.js"></script>
+<script src="script/picture.js"></script>
 <script src="script/main.js"></script>
 
 </body>
