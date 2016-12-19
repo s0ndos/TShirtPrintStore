@@ -23,7 +23,8 @@ $(document).ready(function() {
         $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
         $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
     });
-
+    loadClipartFeatures();
+    loadCTextFeatures();
     $("#camera").click(function () {
         $(".p_video").css("display","block");
 
@@ -89,7 +90,10 @@ function draw() {
     img.addEventListener('load', function(){
         //when image is loaded, event is triggered
         console.log('t-shirt image is loaded, put it on the canvas');
-        cnv.ctx.drawImage(img,25,0,250,150);
+        cnv.width=img.width;
+        cnv.height=img.height;
+        console.log(cnv.height,img.height);
+        cnv.ctx.drawImage(img,0,0);
     });
 }
 

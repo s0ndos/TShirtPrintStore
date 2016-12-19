@@ -5,10 +5,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <!--<link rel="stylesheet" href  ="/style.css">-->
     <link rel="stylesheet" href="css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        #canvas {
+            border:1px solid blue;
+        }
+    </style>
 </head>
 <body>
 <!-- HEADER AND NAV-->
@@ -49,7 +53,6 @@
 <!-- END OF HEADER AND NAV -->
 
 <div class="container">
-    11
     <div class="row">
         <div class="col-lg-5 col-md-5 col-sm-8 col-xs-9 bhoechie-tab-container">
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bhoechie-tab-menu">
@@ -75,10 +78,39 @@
                 <!-- text section -->
                 <div class="bhoechie-tab-content active">
                     <!--                     FEATURE OPTIONS GO HERE -->
+                        <form>
+                            <div class="form-group">
+                                <label for="theText">Text:</label>
+                                <textarea class="form-control" rows="2" id="theText"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="sel1">Font: </label>
+                                <select class="form-control" id="sel1">
+                                    <option style="font-family : Arial">Arial</option>
+                                    <option style="font-family : Courier">Courier</option>
+                                    <option style="font-family : Tahoma">Tahoma</option>
+                                    <option style="font-family : 'Times New Roman'">Times New Roman</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="myColor">Text color:</label>
+                                <input type="color" id="myColor">
+                            </div>
+                            <input id="textPreviewBtn" type="button" value="Preview" class="btn btn-default">
+                        </form>
+
                 </div>
                 <!-- clipart section -->
                 <div class="bhoechie-tab-content">
-                    <!--                     FEATURE OPTIONS GO HERE -->
+                    <h3>Select a shape: </h3>
+                    <div class="shapeList">
+                        <img src="image/clipart/circle.png" alt="circle" id="circle_ca"/>
+                        <img src="image/clipart/square.png" alt="square" id="square_ca"/>
+                        <img src="image/clipart/star.png" alt="star" id="star_ca"/>
+                        <img src="image/clipart/triangle.png" alt="triangle" id="triangle_ca"/>
+                        <img src="image/clipart/oval.png" alt="oval" id="oval_ca"/>
+                        <img src="image/clipart/chatbox.png" alt="chatbox" id="chatbox_ca"/>
+                    </div>
                 </div>
 
                 <!-- draw section -->
@@ -106,16 +138,15 @@
                     <img src="image/DemoTshirtFront.png" width="50px">
                 </a>
             </div>
-
-            <canvas class="col-lg-10 col-md-10 col-sm-12 col-xs-12" id="canvas0">
+            <canvas height="500" width="350" id="canvas0">
+                Your browser does not support the HTML5 canvas tag.
+            </canvas>
+            <canvas height="500" width="350" id="canvas1">
                 Your browser does not support the HTML5 canvas tag.
             </canvas>
         </div>
-
-
     </div>
 </div>
-
 <footer class="container-fluid">
     <div class="row ">
         <div class="visible-xs-block">
@@ -193,12 +224,12 @@
                 </ul>
             </div>
         </div>
-
     </div>
 </footer>
-
 <script src="script/P87_common_shapes.js"></script>
 <script src="script/P87_canvas_data.js"></script>
+<script src="script/textfeatures.js"></script>
+<script src="script/clipartfeatures.js"></script>
 <script src="script/main.js"></script>
 
 </body>

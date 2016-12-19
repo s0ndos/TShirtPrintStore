@@ -136,12 +136,50 @@ footer{
     height:auto;
 }
 
+/****************TEXT FEATURES STYLE****************/
+
+.inl-bl {
+    display: inline-block;
+}
+
+.btn-default {
+    color: #fff;
+    background-color: #5A55A3 !important;
+    border-color: #ccc;
+}
+
+/****************END OF TEXT FEATURES STYLE STYLE****************/
+
+/****************CLIPART FEATURES STYLE****************/
+
+.shapeList img{
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+    cursor:pointer;
+}
+
+.shapeList {
+
+    overflow-y: scroll;
+    max-width: 70px;
+    max-height: 50px;
+}
+
+/**************** END OF CLIPART FEATURES STYLE****************/
 
 /****************CANVAS STYLE****************/
 #canvas0 {
     border : 2px solid #dd5c11;
-    height: 500px;
+    /*height: 500px;*/
 }
+
+#canvas1 {
+    border : 2px solid blue;
+    /*height: 500px;*/
+}
+
+
 
 #tShirt{
     margin-top: 20px;
