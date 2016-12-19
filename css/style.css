@@ -118,6 +118,9 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
 }
 
 /*Camera Video*/
+.p_video{
+    display: none;
+}
 .p2_video{
     display: none;
 }
@@ -143,3 +146,53 @@ footer{
     color:white;
     height:auto;
 }
+
+/****************TEXT FEATURES STYLE****************/
+
+.inl-bl {
+    display: inline-block;
+}
+
+.btn-default {
+    color: #fff;
+    background-color: #5A55A3 !important;
+    border-color: #ccc;
+}
+
+/****************END OF TEXT FEATURES STYLE STYLE****************/
+
+/****************CLIPART FEATURES STYLE****************/
+
+.shapeList img{
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+    cursor:pointer;
+}
+
+.shapeList {
+
+    overflow-y: scroll;
+    max-width: 70px;
+    max-height: 50px;
+}
+
+/**************** END OF CLIPART FEATURES STYLE****************/
+
+/****************CANVAS STYLE****************/
+#canvas0 {
+    border : 2px solid #dd5c11;
+    /*height: 500px;*/
+}
+
+#canvas1 {
+    border : 2px solid blue;
+    /*height: 500px;*/
+}
+
+
+
+#tShirt{
+    margin-top: 20px;
+}
+/************END OF CANVAS STYLE*************/
