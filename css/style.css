@@ -8,7 +8,9 @@
 body {
     #padding-top: 250px;
 }
-
+canvas{
+   border : 2px solid #dd5c11;
+}
 .zsx {
     background-color: #5A55A3;
 }
@@ -99,13 +101,22 @@ div.bhoechie-tab-menu div.list-group>a.active:after{
 div.bhoechie-tab-content{
     background-color: #ffffff;
     /* border: 1px solid #eeeeee; */
-    padding-left: 20px;
+    /*padding-left: 5px;*/
     padding-top: 10px;
 }
 
 div.bhoechie-tab div.bhoechie-tab-content:not(.active){
     display: none;
 }
+/*Picture*/
+#files_input{
+    margin-bottom: 5px;
+}
+#output_file_list{
+    list-style-type:none;
+    padding:0;
+}
+
 /*Camera Video*/
 .p_video{
     display: none;
@@ -124,7 +135,7 @@ div.visible-xs-block
 {
     background:#5A55A3;
     color:white;
-    /*font-family:"Tahoma" Serif;*/
+    /*font-family:"Tahoma"; Serif;*/
     font-family:"Tahoma";
     padding:1em;
 }
@@ -136,13 +147,112 @@ footer{
     height:auto;
 }
 
+/****************TEXT FEATURES STYLE****************/
+
+.inl-bl {
+    display: inline-block;
+}
+
+.btn-default {
+    color: #fff;
+    background-color: #5A55A3 !important;
+    border-color: #ccc;
+}
+
+/****************END OF TEXT FEATURES STYLE STYLE****************/
+
+/****************CLIPART FEATURES STYLE****************/
+
+.shapeList img{
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+    cursor:pointer;
+}
+
+.shapeList {
+
+    overflow-y: scroll;
+    max-width: 70px;
+    max-height: 50px;
+}
+
+/**************** END OF CLIPART FEATURES STYLE****************/
 
 /****************CANVAS STYLE****************/
 #canvas0 {
     border : 2px solid #dd5c11;
+    /*height: 500px;*/
+}
+
+#canvas1 {
+    border : 2px solid blue;
+    /*height: 500px;*/
 }
 
 #tShirt{
     margin-top: 20px;
+    max-width: 400px;
+}
+
+#tShirt .list-group{
+    margin-left: 1px;
+}
+
+.shirtColor{
+     margin-top: 10px;
+     margin-right: 7px;
+     width: 20px;
+     height: 20px;
+}
+
+.shirtColor:active{
+    border: 2px solid darkblue;
+}
+
+#frontBack{
+    display: inline-block;
+    width: 65px;
+    border-radius: 5px;
+}
+
+.selectShirtButtons button{
+    display: inline-block;
+    width: 82px;
+}
+
+#shirtSize{
+    color: #5A55A3;
+    margin-top: 200px;
+    margin-left: -25px;
+    width: 68px;
+    text-align: left;
+}
+
+#white{
+    background-color: white;
+}
+#red{
+    background-color: red;
+}
+
+#green{
+    background-color: lawngreen;
+}
+
+#blue{
+    background-color: blue;
+}
+
+#aqua{
+    background-color: aqua;
+}
+
+#hotPink{
+    background-color: hotpink;
+}
+
+#yellow{
+    background-color: yellow;
 }
 /************END OF CANVAS STYLE*************/
