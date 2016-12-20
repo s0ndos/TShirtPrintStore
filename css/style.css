@@ -168,17 +168,32 @@ footer{
 
 /**************** END OF CLIPART FEATURES STYLE****************/
 
+
 /****************CANVAS STYLE****************/
+
+#canvas-container {
+    position: relative;
+    height: 500px;
+}
+.canvas { position: absolute; top: 0; left: 0; }
+
 #canvas0 {
     border : 2px solid #dd5c11;
+    z-index: 0;
     /*height: 500px;*/
 }
 
 #canvas1 {
     border : 2px solid blue;
+    z-index: 100;
     /*height: 500px;*/
 }
 
+#canvas2 {
+    border : 2px solid purple;
+    z-index: 200;
+    /*height: 500px;*/
+}
 
 
 #tShirt{
