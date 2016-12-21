@@ -58,10 +58,10 @@
         <div class="col-lg-5 col-md-5 col-sm-8 col-xs-9 bhoechie-tab-container">
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bhoechie-tab-menu">
                 <div class="list-group">
-                    <a href="#" class="list-group-item active text-center">
+                    <a href="#" class="list-group-item active text-center" id="textTab">
                         <h4 class="glyphicon glyphicon-text-size"></h4><br/>Text
                     </a>
-                    <a href="#" class="list-group-item text-center">
+                    <a href="#" class="list-group-item text-center" id="clipartTab">
                         <h4 class="glyphicon glyphicon-star"></h4><br/>Clipart
                     </a>
                     <a href="#" class="list-group-item text-center">
@@ -111,6 +111,13 @@
                         <img src="image/clipart/triangle.png" alt="triangle" id="triangle_ca"/>
                         <img src="image/clipart/oval.png" alt="oval" id="oval_ca"/>
                         <img src="image/clipart/chatbox.png" alt="chatbox" id="chatbox_ca"/>
+                    </div>
+                    <h3>Select a color: </h3>
+                    <div>
+                        <button id="pinkButton" class="button button3"></button>
+                        <button id="redButton" class="button button2"></button>
+                        <button id="greenButton" class="button button4"></button>
+                        <button id="blueButton" class="button button5"></button>
                     </div>
                 </div>
 
@@ -168,12 +175,18 @@
                 </button>
                 <button id="frontBack" class="col-lg-2 col-md-2 col-sm-3 col-xs-4 list-group-item active text-center">Front</button>
             </div>
-            <canvas height="500" width="350" id="canvas0">
+            <div id="canvas-container">
+                <canvas class="canvas" height="500" width="350" id="canvas1">
                 Your browser does not support the HTML5 canvas tag.
-            </canvas>
-            <canvas height="500" width="350" id="canvas1">
-                Your browser does not support the HTML5 canvas tag.
-            </canvas>
+                </canvas>
+                <canvas class="canvas" height="500" width="350" id="canvas0">
+                    Your browser does not support the HTML5 canvas tag.
+                </canvas>
+                <canvas class="canvas" height="500" width="350" id="canvas2">
+                    Your browser does not support the HTML5 canvas tag.
+                </canvas>
+            </div>
+
         </div>
         <aside id="shirtSize" class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
             <h4>Size</h4>
@@ -190,9 +203,9 @@
 
     </div>
 </div>
-
+<div class="row">
 <footer class="container-fluid">
-    <div class="row ">
+    <div class="row">
         <div class="visible-xs-block">
             <div role="tabpanel">
 
@@ -271,6 +284,7 @@
 
     </div>
 </footer>
+</div>
 
 <script src="script/P87_common_shapes.js"></script>
 <script src="script/P87_canvas_data.js"></script>
