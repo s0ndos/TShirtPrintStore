@@ -5,7 +5,6 @@
 function loadClipartFeatures() {
     $("#canvas1").css("zIndex","500");
     $("#canvas2").css("zIndex","200");
-    console.log("Clipart loaded");
     var canvas = document.getElementById("canvas1");
     var ctx = canvas.getContext("2d");
 
@@ -51,15 +50,107 @@ function loadClipartFeatures() {
 
         document.getElementById('circle_ca').addEventListener('click', function () {
             img.src = this.src
-            document.getElementById('redButton').addEventListener('click', function(){
-                alert('clicked');
 
+            document.getElementById('pinkButton').addEventListener('click', function(){
+                var imageData = ctx.getImageData(imageX,imageY,img.width,img.height);
+                console.log(imageData);
+                var pixelArray = imageData.data;
+                var length = pixelArray.length / 4;
+
+                for (var i = 0; i < length; i++) {
+                    var index = 4 * i;
+
+                    var r = pixelArray[index];
+                    var g = pixelArray[++index];
+                    var b = pixelArray[++index];
+                    var a = pixelArray[++index];
+
+                    if (r === 0) { // pixel is black
+                        pixelArray[--index] = 255; // blue is set to 100%
+                        pixelArray[--index] = 0; // green is set to 100%
+                        pixelArray[--index] = 255; // pink
+                        // resulting color is white
+                    }
+                }
+                ctx.putImageData(imageData, imageX, imageY);
             });
+
+            document.getElementById('redButton').addEventListener('click', function(){
+                var imageData = ctx.getImageData(imageX,imageY,img.width,img.height);
+                console.log(imageData);
+                var pixelArray = imageData.data;
+                var length = pixelArray.length / 4;
+
+                for (var i = 0; i < length; i++) {
+                    var index = 4 * i;
+
+                    var r = pixelArray[index];
+                    var g = pixelArray[++index];
+                    var b = pixelArray[++index];
+                    var a = pixelArray[++index];
+
+                    if (r === 0) { // pixel is black
+                        pixelArray[--index] = 0; // blue is set to 100%
+                        pixelArray[--index] = 0; // green is set to 100%
+                        pixelArray[--index] = 255; // pink
+                        // resulting color is white
+                    }
+                }
+                ctx.putImageData(imageData, imageX, imageY);
+            });
+
+            document.getElementById('greenButton').addEventListener('click', function(){
+                var imageData = ctx.getImageData(imageX,imageY,img.width,img.height);
+                console.log(imageData);
+                var pixelArray = imageData.data;
+                var length = pixelArray.length / 4;
+
+                for (var i = 0; i < length; i++) {
+                    var index = 4 * i;
+
+                    var r = pixelArray[index];
+                    var g = pixelArray[++index];
+                    var b = pixelArray[++index];
+                    var a = pixelArray[++index];
+
+                    if (r === 0) { // pixel is black
+                        pixelArray[--index] = 0; // blue is set to 100%
+                        pixelArray[--index] = 255; // green is set to 100%
+                        pixelArray[--index] = 0; // pink
+                        // resulting color is white
+                    }
+                }
+                ctx.putImageData(imageData, imageX, imageY);
+            });
+
+            document.getElementById('blueButton').addEventListener('click', function(){
+                var imageData = ctx.getImageData(imageX,imageY,img.width,img.height);
+                console.log(imageData);
+                var pixelArray = imageData.data;
+                var length = pixelArray.length / 4;
+
+                for (var i = 0; i < length; i++) {
+                    var index = 4 * i;
+
+                    var r = pixelArray[index];
+                    var g = pixelArray[++index];
+                    var b = pixelArray[++index];
+                    var a = pixelArray[++index];
+
+                    if (r === 0) { // pixel is black
+                        pixelArray[--index] = 0; // blue is set to 100%
+                        pixelArray[--index] = 255; // green is set to 100%
+                        pixelArray[--index] = 255; // pink
+                        // resulting color is white
+                    }
+                }
+                ctx.putImageData(imageData, imageX, imageY);
+            });
+
         });
 
         document.getElementById('square_ca').addEventListener('click', function () {
             img.src = this.src
-
         });
 
         document.getElementById('star_ca').addEventListener('click', function () {
@@ -86,6 +177,27 @@ function loadClipartFeatures() {
 
         // draw the image
         ctx.drawImage(img, 0, 0, img.width, img.height, imageX, imageY, imageWidth, imageHeight);
+        // var imageData = ctx.getImageData(imageX,imageY,img.width,img.height);
+        // console.log(imageData);
+        // var pixelArray = imageData.data;
+        // var length = pixelArray.length / 4;
+        //
+        // for (var i = 0; i < length; i++) {
+        //     var index = 4 * i;
+        //
+        //     var r = pixelArray[index];
+        //     var g = pixelArray[++index];
+        //     var b = pixelArray[++index];
+        //     var a = pixelArray[++index];
+        //
+        //     if (r === 0) { // pixel is black
+        //         pixelArray[--index] = 255; // blue is set to 100%
+        //         pixelArray[--index] = 255; // green is set to 100%
+        //         // resulting color is white
+        //     }
+        // }
+        //
+        // ctx.putImageData(imageData, imageX, imageY);
 
         // optionally draw the draggable anchors
         if (withAnchors) {
@@ -149,8 +261,6 @@ function loadClipartFeatures() {
 
 
     function hitImage(x, y) {
-         //console.log('imageY',imageY);
-           //console.log('y',y);
         console.log('result: ', x > imageX && x < imageX + imageWidth && y > imageY && y < imageY + imageHeight);
         return (x > imageX && x < imageX + imageWidth && y > imageY && y < imageY + imageHeight);
     }
@@ -159,13 +269,8 @@ function loadClipartFeatures() {
     function handle_MouseDown(e) {
         start_X = parseInt(e. clientX- offsetX);
         start_Y = parseInt(e.clientY - offsetY);
-        //console.log("clientY",e.clientY);
-        //console.log('offsetY', offsetY);
         draggingResizer = anchorHitTest(start_X, start_Y);
-        //console.log(draggingResizer);
         draggingImage = draggingResizer < 0 && hitImage(start_X, start_Y);
-        //console.log(hitImage(start_X, start_Y));
-        //console.log(draggingImage);
     }
 
     function handle_MouseUp(e) {
@@ -179,9 +284,7 @@ function loadClipartFeatures() {
     }
 
     function handle_MouseMove(e) {
-        //console.log(draggingResizer);
         if (draggingResizer > -1) {
-            //console.log(draggingResizer > -1);
             var mouseX = parseInt(e.clientX - offsetX);
             var mouseY = parseInt(e.clientY - offsetY);
 

@@ -127,7 +127,7 @@ function loadCTextFeatures() {
             console.log(text);
             // calc the size of this text for hit-testing purposes
             ctx.font = "16px" + "'" + document.getElementById('sel1').value + "'";
-            ctx.fillStyle = document.getElementById("myColor").value;
+            ctx.fillStyle = document.getElementById("text_color").value;
             console.log(ctx.fillStyle);
             text.width = ctx.measureText(text.text).width;
             text.height = 16;
