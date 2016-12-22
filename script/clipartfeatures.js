@@ -5,15 +5,17 @@
 function loadClipartFeatures() {
     $("#canvas1").css("zIndex","500");
     $("#canvas2").css("zIndex","200");
+    $("#colors_sketch").css("zIndex","100");
     var canvas = document.getElementById("canvas1");
     var ctx = canvas.getContext("2d");
-
+    ctx.globalAlpha = 0.85;
     var canvasOffset = $("#canvas1").offset();
     console.log(canvasOffset);
     var offsetX = canvasOffset.left;
     var headerHeight = $('header').height();
     var navHeight = $('nav').height();
     var offsetY = canvasOffset.top - headerHeight - navHeight;
+    console.log('canvasOffset.top', canvasOffset.top);
     console.log('offsetY', offsetY);
     var start_X;
     var start_Y;
@@ -48,125 +50,70 @@ function loadClipartFeatures() {
 
             img.src = "";
 
+    function customColor(){
+
+        var hexColor = document.getElementById("myColor2").value;
+
+        var r_from_hex = parseInt(hexColor.slice(1, 3), 16),
+            g_from_hex = parseInt(hexColor.slice(3, 5), 16),
+            b_from_hex = parseInt(hexColor.slice(5, 7), 16);
+
+        console.log('r: ',r_from_hex);
+        console.log('g', g_from_hex);
+        console.log('b', b_from_hex);
+
+        var imageData = ctx.getImageData(imageX,imageY,img.width,img.height);
+        console.log(imageData);
+        var pixelArray = imageData.data;
+        var length = pixelArray.length / 4;
+
+        for (var i = 0; i < length; i++) {
+            var index = 4 * i;
+
+            var r = pixelArray[index];
+            var g = pixelArray[++index];
+            var b = pixelArray[++index];
+            var a = pixelArray[++index];
+
+            if (r === 0) { // pixel is black
+                pixelArray[--index] = b_from_hex; // b
+                pixelArray[--index] = g_from_hex; // g
+                pixelArray[--index] = r_from_hex; // r
+            }
+        }
+        ctx.putImageData(imageData, imageX, imageY);
+
+    }
+
         document.getElementById('circle_ca').addEventListener('click', function () {
-            img.src = this.src
 
-            document.getElementById('pinkButton').addEventListener('click', function(){
-                var imageData = ctx.getImageData(imageX,imageY,img.width,img.height);
-                console.log(imageData);
-                var pixelArray = imageData.data;
-                var length = pixelArray.length / 4;
-
-                for (var i = 0; i < length; i++) {
-                    var index = 4 * i;
-
-                    var r = pixelArray[index];
-                    var g = pixelArray[++index];
-                    var b = pixelArray[++index];
-                    var a = pixelArray[++index];
-
-                    if (r === 0) { // pixel is black
-                        pixelArray[--index] = 255; // blue is set to 100%
-                        pixelArray[--index] = 0; // green is set to 100%
-                        pixelArray[--index] = 255; // pink
-                        // resulting color is white
-                    }
-                }
-                ctx.putImageData(imageData, imageX, imageY);
-            });
-
-            document.getElementById('redButton').addEventListener('click', function(){
-                var imageData = ctx.getImageData(imageX,imageY,img.width,img.height);
-                console.log(imageData);
-                var pixelArray = imageData.data;
-                var length = pixelArray.length / 4;
-
-                for (var i = 0; i < length; i++) {
-                    var index = 4 * i;
-
-                    var r = pixelArray[index];
-                    var g = pixelArray[++index];
-                    var b = pixelArray[++index];
-                    var a = pixelArray[++index];
-
-                    if (r === 0) { // pixel is black
-                        pixelArray[--index] = 0; // blue is set to 100%
-                        pixelArray[--index] = 0; // green is set to 100%
-                        pixelArray[--index] = 255; // pink
-                        // resulting color is white
-                    }
-                }
-                ctx.putImageData(imageData, imageX, imageY);
-            });
-
-            document.getElementById('greenButton').addEventListener('click', function(){
-                var imageData = ctx.getImageData(imageX,imageY,img.width,img.height);
-                console.log(imageData);
-                var pixelArray = imageData.data;
-                var length = pixelArray.length / 4;
-
-                for (var i = 0; i < length; i++) {
-                    var index = 4 * i;
-
-                    var r = pixelArray[index];
-                    var g = pixelArray[++index];
-                    var b = pixelArray[++index];
-                    var a = pixelArray[++index];
-
-                    if (r === 0) { // pixel is black
-                        pixelArray[--index] = 0; // blue is set to 100%
-                        pixelArray[--index] = 255; // green is set to 100%
-                        pixelArray[--index] = 0; // pink
-                        // resulting color is white
-                    }
-                }
-                ctx.putImageData(imageData, imageX, imageY);
-            });
-
-            document.getElementById('blueButton').addEventListener('click', function(){
-                var imageData = ctx.getImageData(imageX,imageY,img.width,img.height);
-                console.log(imageData);
-                var pixelArray = imageData.data;
-                var length = pixelArray.length / 4;
-
-                for (var i = 0; i < length; i++) {
-                    var index = 4 * i;
-
-                    var r = pixelArray[index];
-                    var g = pixelArray[++index];
-                    var b = pixelArray[++index];
-                    var a = pixelArray[++index];
-
-                    if (r === 0) { // pixel is black
-                        pixelArray[--index] = 0; // blue is set to 100%
-                        pixelArray[--index] = 255; // green is set to 100%
-                        pixelArray[--index] = 255; // pink
-                        // resulting color is white
-                    }
-                }
-                ctx.putImageData(imageData, imageX, imageY);
-            });
-
+            img.src = this.src;
+            document.getElementById('clipartPreviewBtn').addEventListener('click', customColor);
         });
 
         document.getElementById('square_ca').addEventListener('click', function () {
-            img.src = this.src
+            img.src = this.src;
+            document.getElementById('clipartPreviewBtn').addEventListener('click', customColor);
         });
 
         document.getElementById('star_ca').addEventListener('click', function () {
-            img.src = this.src
+            img.src = this.src;
+            document.getElementById('clipartPreviewBtn').addEventListener('click', customColor);
         });
 
         document.getElementById('triangle_ca').addEventListener('click', function () {
-            img.src = this.src
+            img.src = this.src;
+            document.getElementById('clipartPreviewBtn').addEventListener('click', customColor);
         });
 
         document.getElementById('oval_ca').addEventListener('click', function () {
-            img.src = this.src
+            img.src = this.src;
+            document.getElementById('clipartPreviewBtn').addEventListener('click', customColor);
         });
 
         document.getElementById('chatbox_ca').addEventListener('click', function () {
-            img.src = this.src
+            img.src = this.src;
+            document.getElementById('clipartPreviewBtn').addEventListener('click', customColor);
         });
 
 
@@ -177,35 +124,14 @@ function loadClipartFeatures() {
 
         // draw the image
         ctx.drawImage(img, 0, 0, img.width, img.height, imageX, imageY, imageWidth, imageHeight);
-        // var imageData = ctx.getImageData(imageX,imageY,img.width,img.height);
-        // console.log(imageData);
-        // var pixelArray = imageData.data;
-        // var length = pixelArray.length / 4;
-        //
-        // for (var i = 0; i < length; i++) {
-        //     var index = 4 * i;
-        //
-        //     var r = pixelArray[index];
-        //     var g = pixelArray[++index];
-        //     var b = pixelArray[++index];
-        //     var a = pixelArray[++index];
-        //
-        //     if (r === 0) { // pixel is black
-        //         pixelArray[--index] = 255; // blue is set to 100%
-        //         pixelArray[--index] = 255; // green is set to 100%
-        //         // resulting color is white
-        //     }
-        // }
-        //
-        // ctx.putImageData(imageData, imageX, imageY);
 
         // optionally draw the draggable anchors
-        if (withAnchors) {
-            drawDragAnchor(imageX, imageY);
-            drawDragAnchor(imageRight, imageY);
-            drawDragAnchor(imageRight, imageBottom);
-            drawDragAnchor(imageX, imageBottom);
-        }
+        // if (withAnchors) {
+        //     drawDragAnchor(imageX, imageY);
+        //     drawDragAnchor(imageRight, imageY);
+        //     drawDragAnchor(imageRight, imageBottom);
+        //     drawDragAnchor(imageX, imageBottom);
+        // }
 
         // optionally draw the connecting anchor lines
         if (withBorders) {
@@ -363,6 +289,10 @@ function loadClipartFeatures() {
     });
     $("#canvas1").mouseout(function (e) {
         handle_MouseOut(e);
+    });
+
+    document.getElementById('cliparttrash').addEventListener('click', function(){
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
     });
 
 }

@@ -65,7 +65,8 @@
                     <a href="#" class="list-group-item text-center" id="clipartTab">
                         <h4 class="glyphicon glyphicon-star"></h4><br/>Clipart
                     </a>
-                    <a href="#" class="list-group-item text-center" >
+
+                    <a href="#" class="list-group-item text-center" id="drawLink">
                         <h4 class="glyphicon glyphicon-pencil"></h4><br/>Draw
                     </a>
                     <a href="#" class="list-group-item text-center" id="picturetab">
@@ -80,7 +81,7 @@
                 <!-- text section -->
                 <div class="bhoechie-tab-content active">
                     <!--                     FEATURE OPTIONS GO HERE -->
-                        <form>
+                    <h2>Text</h2>
                             <div class="form-group">
                                 <label for="theText">Text:</label>
                                 <textarea class="form-control" rows="2" id="theText"></textarea>
@@ -98,12 +99,24 @@
                                 <label for="myColor">Text color:</label>
                                 <input type="color" id="myColor">
                             </div>
-                            <input id="textPreviewBtn" type="button" value="Preview" class="btn btn-default">
-                        </form>
+                            <div class="form-group">
+                                <label for="sel1">Font size: </label>
+                                <select class="form-control" id="sel2">
+                                    <option style="font-size : 16px" value="16">16pt</option>
+                                    <option style="font-size : 20px" value="20">20pt</option>
+                                    <option style="font-size : 24px" value="24">24pt</option>
+                                    <option style="font-size : 28px" value="28">28pt</option>
+                                    <option style="font-size : 32px" value="32">32pt</option>
+                                </select>
+                            </div>
 
+                            <input id="textPreviewBtn" type="button" value="Preview" class="btn btn-default">
+                            <span class="glyphicon glyphicon-trash" id="texttrash"></span>
                 </div>
                 <!-- clipart section -->
                 <div class="bhoechie-tab-content">
+                    <h2>Clipart</h2>
+                    <hr>
                     <h3>Select a shape: </h3>
                     <div class="shapeList">
                         <img src="image/clipart/circle.png" alt="circle" id="circle_ca"/>
@@ -113,18 +126,29 @@
                         <img src="image/clipart/oval.png" alt="oval" id="oval_ca"/>
                         <img src="image/clipart/chatbox.png" alt="chatbox" id="chatbox_ca"/>
                     </div>
-                    <h3>Select a color: </h3>
-                    <div>
-                        <button id="pinkButton" class="button button3"></button>
-                        <button id="redButton" class="button button2"></button>
-                        <button id="greenButton" class="button button4"></button>
-                        <button id="blueButton" class="button button5"></button>
+                    <hr>
+                    <div class="form-group">
+                        <label for="myColor2">Select a color</label>
+                        <input type="color" id="myColor2">
                     </div>
+                    <input id="clipartPreviewBtn" type="button" value="Preview" class="btn btn-default">
+                    <span class="glyphicon glyphicon-trash" id="cliparttrash"></span>
                 </div>
 
                 <!-- draw section -->
                 <div class="bhoechie-tab-content">
-                    <!--                     FEATURE OPTIONS GO HERE -->
+                    <h2>Draw</h2>
+                    <hr>
+                    <p>Draw directly on the canvas by picking a color and brush thickness</p>
+                    <!-- FEATURE OPTIONS GO HERE -->
+                    <div class='demo' id='colors_demo'>
+                        <div class="tools">
+
+                        </div>
+                        <br>
+                        <br>
+                        <span class="glyphicon glyphicon-trash" id="drawtrash"></span>
+                    </div>
                 </div>
 
                 <!-- picture section -->
@@ -182,6 +206,9 @@
                 <button id="frontBack" class="col-lg-2 col-md-2 col-sm-3 col-xs-4 list-group-item active text-center">Front</button>
             </div>
             <div id="canvas-container">
+                <canvas class="canvas" id="colors_sketch" height="500" width="350" >
+                    Your browser does not support the HTML5 canvas tag.
+                </canvas>
                 <canvas class="canvas" height="500" width="350" id="canvas1">
                 Your browser does not support the HTML5 canvas tag.
                 </canvas>
@@ -191,7 +218,10 @@
                 <canvas class="canvas" height="500" width="350" id="canvas2">
                     Your browser does not support the HTML5 canvas tag.
                 </canvas>
+
             </div>
+
+
 
         </div>
         <aside id="shirtSize" class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -302,6 +332,7 @@
 <script src="script/textfeatures.js"></script>
 <script src="script/clipartfeatures.js"></script>
 <script src="script/models.js"></script>
+<script src="script/drawing.js"></script>
 <script src="script/main.js"></script>
 
 </body>
