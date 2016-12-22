@@ -77,6 +77,7 @@ function Take_Photo() {
     //Get Photo
     snap.addEventListener("click", function () {
         $(".p2_video").css("display","inline-block");
+        $("#v_s_submit").css("display","none");
         console.log(video.width, video.height);
         canvas.getContext('2d').drawImage(video, 0, 0, video.width, video.height);
         var dataURL = canvas.toDataURL('image/png');//Creating a dataUrl with type image/png
@@ -101,6 +102,7 @@ function Take_Photo() {
     });
     //Select
     select.addEventListener("click",function () {
+        $("#v_s_submit").css("display","inline-block");
         if (sel.MODE_OFF == sel.mode) {
             sel.mode = sel.MODE_DISPLAYING;
             sel.draw();

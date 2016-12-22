@@ -119,9 +119,12 @@ function Upload_Picture() {
                     copyCanvas.width = sel.backupData.width;
                     copyCanvas.height = sel.backupData.height;
                     copyCanvas.getContext('2d').putImageData(sel.backupData, 0, 0);
-
                     var image=new Image;
+                    var clothes=new Image;
+                    clothes.src=dataURL;
                     image.src=copyCanvas.toDataURL("image/png");
+                    ctx.clearRect(0,0,canvas0.width,canvas0.height);
+                    ctx.drawImage(clothes,0,0);
                     ctx.drawImage(image,110,150,120,150);
                 });
                 //Submit picture to Canvas0
@@ -129,7 +132,7 @@ function Upload_Picture() {
                     var canvas=new_canvas;
                     var url=dataURL;
                     return function () {
-                        putinto_clothes(canvas);
+                        putinto_clothes(canvas,url);
                     }
                 }());
 
@@ -262,14 +265,18 @@ function Upload_Picture() {
      * Submit button
      * Put picture into Canvas0
      */
-    function putinto_clothes(canvas) {
+    function putinto_clothes(canvas,url) {
 
        var dataURL=canvas.toDataURL('image/png');
        var Img=new Image;
        Img.src=dataURL;
+        var clothes=new Image;
+        clothes.src=url;
        var canvas0=document.getElementById('canvas0');
        var ctx=canvas0.getContext('2d');
-        ctx.drawImage(Img,110,150,120,150);
+        ctx.clearRect(0,0,canvas0.width,canvas0.height);
+       ctx.drawImage(clothes,0,0);
+       ctx.drawImage(Img,110,150,120,150);
     }
 
 

@@ -23,29 +23,17 @@ $(document).ready(function() {
         $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
         $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
     });
-<<<<<<< HEAD
-    // loadClipartFeatures();
-    // loadCTextFeatures();
-=======
-    loadClipartFeatures();
-    loadCTextFeatures();
-    Take_Photo();
-    Upload_Picture();
->>>>>>> 2ad078c9b44dc5fe72d740c084a64d558f7e213a
 
 });
 
-<<<<<<< HEAD
 document.getElementById("cameratab").addEventListener("click",Take_Photo);
 document.getElementById("picturetab").addEventListener("click",Upload_Picture);
-=======
-});
+
 // $("#clipartTab").click(loadClipartFeatures());
 //
 // $("#textTab").click(loadCTextFeatures());
 document.getElementById("clipartTab").addEventListener("click",loadClipartFeatures);
 document.getElementById("textTab").addEventListener("click",loadCTextFeatures);
->>>>>>> 2ad078c9b44dc5fe72d740c084a64d558f7e213a
 document.addEventListener('DOMContentLoaded', draw);
 
 function draw() {
