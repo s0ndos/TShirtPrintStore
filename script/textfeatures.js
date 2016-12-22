@@ -3,14 +3,16 @@
  */
 'use strict';
 function loadCTextFeatures() {
-    console.log('sondos.js loaded');
+    $("#canvas1").css("zIndex","200");
+    $("#canvas2").css("zIndex","500");
+    console.log('text.js loaded');
         /*drag and drop text*/
         // canvas related variables
-        var canvas = document.getElementById("canvas0");
+        var canvas = document.getElementById("canvas2");
         var ctx = canvas.getContext("2d");
 
         // variables used to get mouse position on the canvas
-        var $canvas = $("#canvas0");
+        var $canvas = $("#canvas2");
         var canvasOffset = $canvas.offset();
         var offsetX = canvasOffset.left;
         var offsetY = canvasOffset.top;
@@ -98,16 +100,16 @@ function loadCTextFeatures() {
         }
 
         // listen for mouse events
-        $("#canvas0").mousedown(function (e) {
+        $("#canvas2").mousedown(function (e) {
             handleMouseDown(e);
         });
-        $("#canvas0").mousemove(function (e) {
+        $("#canvas2").mousemove(function (e) {
             handleMouseMove(e);
         });
-        $("#canvas0").mouseup(function (e) {
+        $("#canvas2").mouseup(function (e) {
             handleMouseUp(e);
         });
-        $("#canvas0 ").mouseout(function (e) {
+        $("#canvas2 ").mouseout(function (e) {
             handleMouseOut(e);
         });
 
@@ -125,7 +127,7 @@ function loadCTextFeatures() {
             console.log(text);
             // calc the size of this text for hit-testing purposes
             ctx.font = "16px" + "'" + document.getElementById('sel1').value + "'";
-            ctx.fillStyle = document.getElementById("myColor").value;
+            ctx.fillStyle = document.getElementById("text_color").value;
             console.log(ctx.fillStyle);
             text.width = ctx.measureText(text.text).width;
             text.height = 16;
