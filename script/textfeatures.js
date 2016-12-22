@@ -3,6 +3,7 @@
  */
 'use strict';
 function loadCTextFeatures() {
+    $("#colors_sketch").css("zIndex","100");
     $("#canvas1").css("zIndex","200");
     $("#canvas2").css("zIndex","500");
     console.log('text.js loaded');
@@ -114,7 +115,6 @@ function loadCTextFeatures() {
         });
 
         $("#textPreviewBtn").click(function () {
-            console.log("text");
             // calc the y coordinate for this text on the canvas
             var y = texts.length * 20 + 20;
 
@@ -124,10 +124,11 @@ function loadCTextFeatures() {
                 x: 20,
                 y: y
             };
-            console.log(text);
-            // calc the size of this text for hit-testing purposes
-            ctx.font = "16px" + "'" + document.getElementById('sel1').value + "'";
-            ctx.fillStyle = document.getElementById("text_color").value;
+
+
+            ctx.font = document.getElementById('sel2').value + "px " + document.getElementById('sel1').value;
+            console.log(document.getElementById('sel2').value + "px " + document.getElementById('sel1').value);
+            ctx.fillStyle = document.getElementById("myColor").value;
             console.log(ctx.fillStyle);
             text.width = ctx.measureText(text.text).width;
             text.height = 16;
@@ -140,5 +141,7 @@ function loadCTextFeatures() {
 
         });
 
-
+        document.getElementById('texttrash').addEventListener('click', function(){
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        });
 }

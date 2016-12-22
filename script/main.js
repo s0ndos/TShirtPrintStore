@@ -25,6 +25,7 @@ $(document).ready(function() {
     });
     loadClipartFeatures();
     loadCTextFeatures();
+    loadDrawFeatures();
     Take_Photo();
     Upload_Picture();
 
