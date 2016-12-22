@@ -17,7 +17,6 @@ function draw() {
         //when image is loaded, event is triggered
         console.log('t-shirt image is loaded, put it on the canvas');
         cnv.ctx.drawImage(img, 0, 0);
-        cnv.ctx.save();
     });
 
 
@@ -145,7 +144,6 @@ function draw() {
             //when image is loaded, event is triggered
             console.log('t-shirt image is loaded, put it on the canvas');
             cnv.ctx.drawImage(img, 0, 0);
-            cnv.ctx.save();
         });
     }
 
@@ -167,10 +165,67 @@ function draw() {
             //when image is loaded, event is triggered
             console.log('t-shirt image is loaded, put it on the canvas');
             cnv.ctx.drawImage(img, 0, 0);
-            cnv.ctx.save();
         });
     }
 
+    for (var i = 0; i < document.getElementById('shirtSize').getElementsByTagName('input').length; i++) {
+        document.getElementById('shirtSize').getElementsByTagName('input')[i].addEventListener('change', changeSize);
+    }
+
+    function changeSize() {
+        console.log('in changeSize function');
+
+
+        if(this.value == 'xs') {
+            cnv.ctx.restore(); //go back to default preferences
+            cnv.ctx.save();//store them
+
+            /*clearing rectangle*/
+            cnv.ctx.clearRect(0, 0, cnv.get_width(), cnv.get_height());
+
+            cnv.ctx.scale(0.75, 0.95);//rescale img
+            cnv.ctx.translate(cnv.get_width() * 0.15, cnv.get_height() * 0.05);//move to center
+            img.src = 'image/' + shirtType + document.getElementById('frontBack').innerHTML.trim() + '.png'; //reload img
+        }else if(this.value == 's') {
+            cnv.ctx.restore(); //go back to default preferences
+            cnv.ctx.save();//store them
+
+            /*clearing rectangle*/
+            cnv.ctx.clearRect(0, 0, cnv.get_width(), cnv.get_height());
+
+            cnv.ctx.scale(0.9, 1);//rescale img
+            cnv.ctx.translate(cnv.get_width() * 0.05, 0);//move to center
+            img.src = 'image/' + shirtType + document.getElementById('frontBack').innerHTML.trim() + '.png'; //reload img
+        } else if(this.value == 'l') {
+            cnv.ctx.restore(); //go back to default preferences
+            cnv.ctx.save();//store them
+
+            /*clearing rectangle*/
+            cnv.ctx.clearRect(0, 0, cnv.get_width(), cnv.get_height());
+
+            cnv.ctx.scale(1.15, 1.1);//rescale img
+            cnv.ctx.translate(-cnv.get_width() * 0.06, 0);//move to center
+            img.src = 'image/' + shirtType + document.getElementById('frontBack').innerHTML.trim() + '.png'; //reload img
+        } else if(this.value == 'xl') {
+            cnv.ctx.restore(); //go back to default preferences
+            cnv.ctx.save();//store them
+
+            /*clearing rectangle*/
+            cnv.ctx.clearRect(0, 0, cnv.get_width(), cnv.get_height());
+
+            cnv.ctx.scale(1.25, 1.2);//rescale img
+            cnv.ctx.translate(-cnv.get_width() * 0.1, -cnv.get_height() * 0.05);//move to center
+            img.src = 'image/' + shirtType + document.getElementById('frontBack').innerHTML.trim() + '.png'; //reload img
+        } else  {
+            cnv.ctx.restore(); //go back to default preferences
+            cnv.ctx.save();//store them
+
+            /*clearing rectangle*/
+            cnv.ctx.clearRect(0, 0, cnv.get_width(), cnv.get_height());
+
+            img.src = 'image/' + shirtType + document.getElementById('frontBack').innerHTML.trim() + '.png'; //reload img
+        }
+    }
     /*function hexToRgb(hex) {
      var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
      return result ? {
