@@ -23,13 +23,21 @@ $(document).ready(function() {
         $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
         $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
     });
+<<<<<<< HEAD
     loadCTextFeatures();
     loadDrawFeatures();
     Take_Photo();
     Upload_Picture();
+=======
+>>>>>>> 8e3b8ef399150d97a25a78015295242b47d20200
 
+    loadDrawFeatures();
 
 });
+
+document.getElementById("cameratab").addEventListener("click",Take_Photo);
+document.getElementById("picturetab").addEventListener("click",Upload_Picture);
+
 // $("#clipartTab").click(loadClipartFeatures());
 //
 // $("#textTab").click(loadCTextFeatures());
@@ -53,4 +61,7 @@ function draw() {
         cnv.ctx.drawImage(img,0,0);
     });
 }
+
+
+
 

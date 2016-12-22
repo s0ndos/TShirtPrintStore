@@ -124,6 +124,9 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
 .p2_video{
     display: none;
 }
+#snap{
+    margin-bottom:5px;
+}
 /* FOOTER */
 
 footer .list-group-item{
