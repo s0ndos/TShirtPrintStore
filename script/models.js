@@ -14,6 +14,9 @@ function draw() {
     var color = 'white'; //initial shirt color
     var shirtType = 'DemoTshirt';
     img.addEventListener('load', function () {
+        /*clearing rectangle*/
+        cnv.ctx.clearRect(0, 0, cnv.get_width(), cnv.get_height());
+
         //when image is loaded, event is triggered
         console.log('t-shirt image is loaded, put it on the canvas');
         cnv.ctx.drawImage(img, 0, 0);
@@ -98,11 +101,8 @@ function draw() {
      * Changing shirt colors
      * */
     function colorChange() {
-        /*clearing rectangle*/
-        cnv.ctx.clearRect(0, 0, cnv.get_width(), cnv.get_height());
+        img.src = 'image/' + shirtType + document.getElementById('frontBack').innerHTML.trim() + '.png'; //reload img
 
-        /*redrawing initial img*/
-        cnv.ctx.drawImage(img, 0, 0);
         // Defining the rectangular area of pixels to extract (full canvas)
         var extract_rect = new Rectangle(0, 0);
         extract_rect.set_width(img.width);
@@ -194,9 +194,6 @@ function draw() {
             shirtSelectors[i].innerHTML = '<img src="image/' + shirtSelectors[i].id + this.innerHTML + '.png" width="50px">'
         }
 
-        /*clearing rectangle*/
-        cnv.ctx.clearRect(0, 0, cnv.get_width(), cnv.get_height());
-
         /*loading new image*/
         img = new Image();
         img.src = 'image/' + shirtType + this.innerHTML.trim() + '.png';
@@ -205,6 +202,9 @@ function draw() {
 
         //when image is loaded, event is triggered
         img.addEventListener('load', function () {
+            /*clearing rectangle*/
+            cnv.ctx.clearRect(0, 0, cnv.get_width(), cnv.get_height());
+
             //when image is loaded, event is triggered
             console.log('t-shirt image is loaded, put it on the canvas');
             cnv.ctx.drawImage(img, 0, 0);
@@ -282,16 +282,13 @@ function draw() {
     function changeShirt() {
         console.log('in changeShirt function')
 
-        /*clearing rectangle*/
-        cnv.ctx.clearRect(0, 0, cnv.get_width(), cnv.get_height());
-
         shirtType = this.id;
         img.src = 'image/' + shirtType + document.getElementById('frontBack').innerHTML.trim() + '.png';
-        img.addEventListener('load', function () {
-            //when image is loaded, event is triggered
-            console.log('t-shirt image is loaded, put it on the canvas');
-            cnv.ctx.drawImage(img, 0, 0);
-        });
+        // img.addEventListener('load', function () {
+        //     //when image is loaded, event is triggered
+        //     console.log('t-shirt image is loaded, put it on the canvas');
+        //     cnv.ctx.drawImage(img, 0, 0);
+        // });
     }
 
     for (var i = 0; i < document.getElementById('shirtSize').getElementsByTagName('input').length; i++) {
