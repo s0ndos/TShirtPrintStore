@@ -23,13 +23,13 @@ $(document).ready(function() {
         $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
         $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
     });
-    loadClipartFeatures();
-    loadCTextFeatures();
-    Take_Photo();
-    Upload_Picture();
+    // loadClipartFeatures();
+    // loadCTextFeatures();
+
 });
 
-
+document.getElementById("cameratab").addEventListener("click",Take_Photo);
+document.getElementById("picturetab").addEventListener("click",Upload_Picture);
 document.addEventListener('DOMContentLoaded', draw);
 
 function draw() {
@@ -48,4 +48,7 @@ function draw() {
         cnv.ctx.drawImage(img,0,0);
     });
 }
+
+
+
 

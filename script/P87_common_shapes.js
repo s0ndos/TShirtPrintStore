@@ -102,6 +102,15 @@ Shape.prototype.get_center = function () {
 };
 
 /**
+ * Returns true if given point is inside the shape
+ * @param x : number, x coordinate of given point
+ * @param y : number, y coordinate of given point
+ */
+Shape.prototype.point_is_in = function (x,y) {
+    throw new Error('Abstract method : Should not be called');
+};
+
+/**
  * Points_shape() is the constructor of the Points_shape class
  * Points_shape class is the first real implementation of Shape abstraction
  * Points_shape will serve as base for all 2D shapes defined further
@@ -160,6 +169,16 @@ Points_shape.prototype.add_point = function (x ,y) {
     return this;
 };
 
+/**
+ * Returns a point given its index
+ * @param index : number, index of point to get
+ * @returns (Point), the point at this
+ */
+Points_shape.prototype.get_point = function (index) {
+    this.check_point_index(index);
+    return new Point(this.coords[index][0], this.coords[index][1]);
+};
+
 // Gets the x pos of point of shape at given index
 Points_shape.prototype.get_x = function (index) {
     this.check_point_index(index);
@@ -171,6 +190,51 @@ Points_shape.prototype.get_y = function (index) {
     this.check_point_index(index);
     return this.coords[index][1];
 };
+
+// Gets the smallest x pos of all points of shape
+Points_shape.prototype.get_min_x = function () {
+    result = this.coords[0][0];
+    for (var i = 0; i < this.coords.length; i++) {
+        if (this.coords[i][0] < result) {
+            result = this.coords[i][0];
+        }
+    }
+    return result;
+};
+
+// Gets the biggest x pos of all points of shape
+Points_shape.prototype.get_max_x = function () {
+    result = this.coords[0][0];
+    for (var i = 0; i < this.coords.length; i++) {
+        if (this.coords[i][0] > result) {
+            result = this.coords[i][0];
+        }
+    }
+    return result;
+};
+
+// Gets the smallest y pos of all points of shape
+Points_shape.prototype.get_min_y = function () {
+    result = this.coords[0][1];
+    for (var i = 0; i < this.coords.length; i++) {
+        if (this.coords[i][1] < result) {
+            result = this.coords[i][1];
+        }
+    }
+    return result;
+};
+
+// Gets the biggest y pos of all points of shape
+Points_shape.prototype.get_max_y = function () {
+    result = this.coords[0][1];
+    for (var i = 0; i < this.coords.length; i++) {
+        if (this.coords[i][1] > result) {
+            result = this.coords[i][1];
+        }
+    }
+    return result;
+};
+
 
 // Gets the x pos of first point of shape
 Points_shape.prototype.get_x1 = function () {
@@ -357,6 +421,13 @@ Rectangle.prototype.set_height = function (h) {
 // Returns the center Point of the rectangle
 Rectangle.prototype.get_center = function () {
     return new Point((this.get_x(1) - this.get_x(0)) / 2, (this.get_y(1) - this.get_y(0)) / 2);
+};
+
+/**
+ * Returns true if given point is inside the shape
+ */
+Rectangle.prototype.point_is_in = function (x,y) {
+    return (this.get_x1() <= x) && (x <= this.get_x2()) && (this.get_y1() <= y) && (y <= this.get_y2());
 };
 
 

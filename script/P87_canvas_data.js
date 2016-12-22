@@ -87,7 +87,7 @@ Canvas_data.prototype.draw_target_like_point = function (p, color) {
     this.ctx.beginPath();
     this.ctx.arc(p.get_x1(), p.get_y1(), TARGET_CIRCLE_RAY, 0, 2 * Math.PI);
     this.ctx.strokeStyle = color;
-    this.ctx.stroke();
+    this.ctx.draw();
     this.ctx.restore();
     return this;
 };
@@ -104,7 +104,7 @@ Canvas_data.prototype.draw_direction_line = function (pos1, pos2, color) {
     this.ctx.lineTo(pos2.x, pos2.y);
     this.ctx.setLineDash([5, 5]); // dashed line
     this.ctx.strokeStyle = color;
-    this.ctx.stroke();
+    this.ctx.draw();
     this.ctx.restore();
     return this;
 };
@@ -112,21 +112,21 @@ Canvas_data.prototype.draw_direction_line = function (pos1, pos2, color) {
 /**
  * Draws a dotted line in order to evidence a direction
  */
-Canvas_data.prototype.draw_axis = function (length, color) {
+Canvas_data.prototype.draw_axis = function (length, color, line_width) {
     this.ctx.save();
-    this.ctx.lineWidth = 2;
+    this.ctx.lineWidth = 2;//('undefined' == typeof line_width) ? 5 : line_width;
     this.ctx.beginPath();
     this.ctx.moveTo(0, 0);
     this.ctx.lineTo(length, 0);
     this.ctx.setLineDash([5, 5]); // dashed line
     this.ctx.strokeStyle = color;
-    this.ctx.stroke();
+    this.ctx.draw();
     this.ctx.beginPath();
     this.ctx.moveTo(0, 0);
     this.ctx.lineTo(0,length);
     this.ctx.setLineDash([5, 5]); // dashed line
     this.ctx.strokeStyle = color;
-    this.ctx.stroke();
+    this.ctx.draw();
     this.ctx.restore();
     return this;
 };

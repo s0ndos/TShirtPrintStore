@@ -7,15 +7,27 @@
  *Upload Picture
  */
 function Upload_Picture() {
+    console.log('picture');
     var files_input=document.getElementById("files_input");
     var output_file_list=document.getElementById('output_file_list');
     var canvas0=document.getElementById('canvas0');
+    var ctx=canvas0.getContext("2d");
+
+    //Get clothes url
+    var dataURL=canvas0.toDataURL('image/png');
+    var picturelist=[];
     //Check API work
     if(!window.File){
         throw new Error('No file API support');
     }
     //Upload picture
     files_input.addEventListener('change',function(){
+        //clear list
+        var pnode= document.getElementById("output_file_list");
+        var childs=pnode.childNodes;
+        for(var i=childs.length-1;i>=0;i--){
+            pnode.removeChild(childs.item(i));
+        }
         //Get img and remove button
         for (var i = 0; i < this.files.length ; i++) {
             var file = this.files[i]; // simgle file description
@@ -24,29 +36,43 @@ function Upload_Picture() {
                 var new_li = document.createElement('li');
                 var new_div = document.createElement('div');
                 var new_remove = document.createElement('button');
+                var new_select=document.createElement('button');
+                var new_select_submit=document.createElement('button');
                 var new_submit=document.createElement('button');
                 var new_canvas = document.createElement('canvas');
+                new_canvas.id = 'canvas_'+i;
                 var new_image = new Image;
-                //remove and submit innerHTML
+                var sel;
+                var cnv;
+                //put canvas into list[]
+                picturelist[i]=new_canvas;
+                //button innerHTML
                 new_remove.innerHTML="Remove";
                 new_submit.innerHTML="Submit";
+                new_select.innerHTML="Select";
+                new_select_submit.innerHTML="Select Submit";
                 //appending li to ul,div to li
                 output_file_list.appendChild(new_li);
                 new_li.appendChild(new_div);
                 // appending canvas, remove ,submit to div
                 new_div.appendChild(new_canvas);
                 new_div.appendChild(new_remove);
+                new_div.appendChild(new_select);
                 new_div.appendChild(new_submit);
-
+                new_div.appendChild(new_select_submit);
                 //button Style
                 button_style(new_remove);
                 button_hover(new_remove);
+                button_style(new_select);
+                button_hover(new_select);
                 button_style(new_submit);
                 button_hover(new_submit);
+                button_style(new_select_submit);
+                button_hover(new_select_submit);
+                $(new_select_submit).css("display","none");
                 // Start image load by calling any of the two read_and_draw function
                 read_and_filereader(file,new_image);
-                //Get Before submit  Canvas crc
-                var dataURL=canvas0.toDataURL('image/png');
+
                 // Making use a closure to trap the right canvas and image instances
                 new_image.addEventListener('load', function () {
                     var canvas = new_canvas;
@@ -65,19 +91,72 @@ function Upload_Picture() {
                     }
                 }());
                 new_remove.addEventListener('click',remove_list);
+                //Select a part of picture
+                new_select.addEventListener('click',function () {
+                    var div=new_div;
+                    var canvas=new_canvas;
+                    var button=new_select_submit;
+                    return function () {
+                        $(button).css("display","inline-block");
+                        cnv=new Canvas_data(canvas.id);
+                        sel=new Lasso(cnv.elem);
+                        cnv.ctx.strokeStyle = '#777';
+                        cnv.ctx.lineWidth = sel.lineWidth;
+                        if (sel.MODE_OFF == sel.mode) {
+                            sel.mode = sel.MODE_DISPLAYING;
+                            sel.draw();
+                        } else {
+                            sel.mode = sel.MODE_OFF;
+                            sel.clear();
+                        }
+
+                    }
+
+                }(),false);
+                //Select submit
+                new_select_submit.addEventListener('click',function () {
+                    var copyCanvas = document.createElement('canvas');
+                    copyCanvas.width = sel.backupData.width;
+                    copyCanvas.height = sel.backupData.height;
+                    copyCanvas.getContext('2d').putImageData(sel.backupData, 0, 0);
+
+                    var image=new Image;
+                    image.src=copyCanvas.toDataURL("image/png");
+                    ctx.drawImage(image,110,150,120,150);
+                });
                 //Submit picture to Canvas0
                 new_submit.addEventListener('click',function () {
                     var canvas=new_canvas;
+                    var url=dataURL;
                     return function () {
                         putinto_clothes(canvas);
                     }
                 }());
+
             }else{
                 alert("Error!The file is not img.(If your file is img, we just provide .png, .jpg, .jpeg and .bmp)");
             }
         }
 
     });
+    
+    function selectsubmit(div,sel) {
+        var new_select_submit=document.createElement('button');
+        new_select_submit.innerHTML="Select Submit";
+        div.appendChild(new_select_submit);
+        new_select_submit.addEventListener('click', function () {
+            var copyCanvas = document.createElement('canvas');
+            copyCanvas.width = sel.imgData.width;
+            copyCanvas.height = sel.imgData.height;
+            copyCanvas.getContext('2d').putImageData(sel.imgData, 0, 0);
+            var select=new Image;
+            select.src=copyCanvas.toDataURL("image/png");
+
+            var canvas0=document.getElementById('canvas0');
+            var ctx=canvas0.getContext('2d');
+            ctx.drawImage(select,0,0);
+        }, false);
+    }
     //Check file type
     function img_is_valid(file){
         console.log(file.type);
@@ -119,12 +198,9 @@ function Upload_Picture() {
     function draw_on_canvas(canvas, image) {
         // Giving canvas the image dimension
 
-        canvas.width = image.width;
-        canvas.height = image.height;
-
         var ctx = canvas.getContext('2d');
         // Drawing
-        ctx.drawImage(image, 0 ,0);
+        ctx.drawImage(image, 0 ,0,canvas.width,canvas.height);
     }
 
     /**
@@ -134,7 +210,8 @@ function Upload_Picture() {
     function button_style(button) {
         $(button).css({
             "color": "black",
-            "margin-right":5+"px"
+            "margin-right":5+"px",
+            "margin-bottom":5+"px"
         });
     }
 
@@ -168,23 +245,33 @@ function Upload_Picture() {
         var canvas0=document.getElementById('canvas0');
         //Remove the picture
         var ctx=canvas0.getContext('2d');
-        ctx.clearRect(0,0,remove_img.width,remove_img.height);
+        ctx.clearRect(0,0,canvas0.width,canvas0.height);
         //return before submit
         return_img.src=src;
         ctx.drawImage(return_img,0,0);
+    }
+    /**
+     *Lasso
+     */
+    function Lasso_picture(canvas) {
+        //Lasso
+        console.log("canvas",canvas);
 
     }
-
     /**
      * Submit button
      * Put picture into Canvas0
      */
     function putinto_clothes(canvas) {
+
        var dataURL=canvas.toDataURL('image/png');
        var Img=new Image;
        Img.src=dataURL;
        var canvas0=document.getElementById('canvas0');
        var ctx=canvas0.getContext('2d');
-       ctx.drawImage(Img,0,0);
+        ctx.drawImage(Img,110,150,120,150);
     }
+
+
+
 }
