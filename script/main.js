@@ -23,13 +23,6 @@ $(document).ready(function() {
         $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
         $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
     });
-<<<<<<< HEAD
-    loadCTextFeatures();
-    loadDrawFeatures();
-    Take_Photo();
-    Upload_Picture();
-=======
->>>>>>> 8e3b8ef399150d97a25a78015295242b47d20200
 
     loadDrawFeatures();
 
